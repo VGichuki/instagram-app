@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  {% if title %}
+  <title>The Gram - {{title}}</title>
+  {% else %}
+    <title> The Gram </title>
+  {% endif %}
+
+</head>
+<body>
+    {% block content %}
+    {%endblock%}
+</body>
+</html>
