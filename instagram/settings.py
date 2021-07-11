@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'gram.apps.GramConfig',
     'bootstrap3',
     'tinymce',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
