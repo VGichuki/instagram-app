@@ -8,8 +8,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>New Image</title>
   {{form.media}}
-{% block styles %} {% bootstrap_css %}
-  <link rel="stylesheet" href="{% static 'css/index.css' %}"> {% endblock %}
+{% block styles %} 
+{% bootstrap_css %}
+  <link rel="stylesheet" href="{% static 'css/index.css' %}"> 
+  {% endblock %}
 </head>
 <body>
   <form  action="{%url 'new-image'%}" method="post" enctype="multipart/form-data">
