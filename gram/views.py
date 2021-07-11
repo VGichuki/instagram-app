@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from .models import Profile,Post,Comment,Follow
 from .forms import PostForm
-
+from django.contrib.auth.forms import UserCreationForm
 # Create your views here.
 def index(request):
     posts=Post.objects.all()
@@ -20,6 +20,11 @@ def upload_image(request):
     else:
         form = PostForm()
     return render(request,'new_post.html',{"form":form})
+
+def registerPage(request):
+    form = UserCreationForm
+    context = {"form" : form}
+    return render(request, 'registration/register.html', context)
 
 
 
