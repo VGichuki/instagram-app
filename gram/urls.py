@@ -8,6 +8,7 @@ urlpatterns=[
     url('new/image/', views.upload_image, name = 'new-image'),
     url('register/', views.registerPage, name = 'register'),
     url('login/', views.loginPage, name = 'login'),
+    url('logout/', views.logoutUser, name = 'logout')
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
