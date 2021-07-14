@@ -40,7 +40,7 @@ class ProfileTestCase(TestCase):
     class that tests functions in class Profile
     '''
     def setUp(self):
-        self
+        self.wangari = Profile
 
 
     
