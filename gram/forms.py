@@ -20,18 +20,18 @@ class UpdateProfileForm(forms.ModelForm):
         model = Profile
         exclude =('user', 'followers' ,'following')
 
-class UserUpdateForm(forms.ModelForm):
-  class Meta:
-    model=User
-    fields=('profile', 'bio')
+# class UserUpdateForm(forms.ModelForm):
+#   class Meta:
+#     model=User
+#     fields=('profile', 'bio')
 
 class UserCommentForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['comments'].widget = forms.TextInput()
-        self.fields['comments'].widget.attrs['placeholder'] = 'Comment...'
+        self.fields['comment'].widget = forms.TextInput()
+        self.fields['comment'].widget.attrs['placeholder'] = 'Comment...'
 
     class Meta:
         model = Comment
-        fields = ('comments')
+        fields = ('comment',)
 

@@ -2,6 +2,7 @@ from django.conf.urls import url
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
+from .views import comment,search_results,login,logout
 
 urlpatterns=[
     url('^$', views.index, name = 'index'),
@@ -11,6 +12,7 @@ urlpatterns=[
     url('logout/', views.logoutUser, name = 'logout'),
     url('profile/',views.profile, name= 'profile'),
     url(r'^search/', views.search_results, name='search_results'),
+    url('comments/<int:id>', comment, name ='comments'),
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
