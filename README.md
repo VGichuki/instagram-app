@@ -4,7 +4,7 @@
 # Description 
 This is a Django application for an instagram-app where you can view images for different people.
 ##  Live Link 
- Click [View Site]()  to visit the site
+ Click [View Site](https://instagramapp20.herokuapp.com/)  to visit the site
 ## User Story 
 * View different photos that interest them
 * Search for different users
