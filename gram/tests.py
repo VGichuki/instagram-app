@@ -35,12 +35,14 @@ class PostTestCase(TestCase):
     #     result = Post.update_caption(self.pokemon.id, 'have fun playing')
     #     self.assertTrue(result.caption, 'have fun playing')
 
-class ProfileTestCase(TestCase):
-    '''
-    class that tests functions in class Profile
-    '''
-    def setUp(self):
-        self.wangari = Profile
+# class ProfileTestCase(TestCase):
+#     '''
+#     class that tests functions in class Profile
+#     '''
+#     def setUp(self):
+#         self.wangari = Profile(user = 'wangari')
+#         self.wangari.save()
+
 
 
     
