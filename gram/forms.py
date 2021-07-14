@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import fields
-from .models import Post, Profile
+from .models import Comment, Post, Profile
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
@@ -20,7 +20,18 @@ class UpdateProfileForm(forms.ModelForm):
         model = Profile
         exclude =('user', 'followers' ,'following')
 
-# class UserUpdateForm(forms.ModelForm):
-#   class Meta:
-#     model=User
-#     fields=('profile', 'bio')
+class UserUpdateForm(forms.ModelForm):
+  class Meta:
+    model=User
+    fields=('profile', 'bio')
+
+class UserCommentForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['comments'].widget = forms.TextInput()
+        self.fields['comments'].widget.attrs['placeholder'] = 'Comment...'
+
+    class Meta:
+        model = Comment
+        fields = ('comments')
+

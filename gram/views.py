@@ -1,7 +1,7 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect, get_object_or_404
 from django.http import HttpResponse
 from .models import Profile,Post,Comment,Follow
-from .forms import PostForm, CreateUserForm, UpdateProfileForm
+from .forms import PostForm, CreateUserForm, UpdateProfileForm, UserCommentForm, UserUpdateForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
