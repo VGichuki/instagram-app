@@ -18,16 +18,19 @@ def index(request):
 
 @login_required(login_url='login')
 def upload_image(request):
-    current_user = request.user
-    if request.method == 'POST':
-        form = PostForm(request.POST,request.FILES)
-        if form.is_valid():
-            image = form.save(commit=False)
-            image.user = current_user
-            image.save()
+    users  = User.objects.all()
+    posts = Post.objects.all()
+    form = PostForm(request.POST or None, files=request.FILES)
+    if form.is_valid():
+        post = form.save(commit=False)
+        post.user = request.user.profile
+        post.save()
         return redirect('index')
-    else:
-        form = PostForm()
+    context = {
+        'posts': posts,
+        'form' : form,
+        'users' :users,
+    }
     return render(request,'new_post.html',{"form":form})
 
 def registerPage(request):
@@ -103,20 +106,6 @@ def profile(request):
 #   } 
 
 #   return render(request,'updateprofile.html',context)  
-
-@login_required(login_url='login')
-def upload_image(request):
-    current_user = request.user
-    if request.method == 'POST':
-        form = PostForm(request.POST or None, request.FILES)
-        if form.is_valid():
-            image = form.save(commit = False)
-            image.user = current_user.profile
-            image.save()
-            return redirect('index')
-    else:
-        form = PostForm()
-        return redirect(request, 'image.html',{"form": form})
 
 @login_required(login_url='login')
 def search_results(request):
