@@ -1,0 +1,34 @@
+{% extends 'base.html'%}
+{% load static %}
+{% load crispy_form_tags %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="card">
+            <img src="{{image.user,profie.url}}" alt="{{image.user.user.usernamr}}">
+            {% for comment in comments %}
+            <div>
+                <p>{{comment.user.user.username}}</p>
+                <p>{{comment.comment}}</p>
+            </div>
+            {% empty %}
+            <p>No available comments</p>
+            {% endfor %}
+        </div>
+
+        <form class="form" action="" method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <div>
+                    {{ form|crispy }}
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-sm btn-outline-primary">comment</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+{%endblock %}

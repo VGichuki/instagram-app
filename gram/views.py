@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect, get_object_or_404
 from django.http import HttpResponse
 from .models import Profile,Post,Comment,Follow
-from .forms import PostForm, CreateUserForm, UpdateProfileForm, UserCommentForm, UserUpdateForm
+from .forms import PostForm, CreateUserForm, UpdateProfileForm, UserCommentForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
@@ -130,6 +130,19 @@ def search_results(request):
         message = "Enter name to search"
         return render(request,"search.html",{"message":message})
 
+def comment(request, id):
+    all_comments = Comment.get_comments(id)
+    image = get_object_or_404(Post, id=id)
+    form = UserCommentForm(request.POST)
+    if form.is_valid():
+        comment = form.save(commit=False)
+        comment.post = image
+        comment.user = request.user.profile
+        comment.save()
+        return HttpResponseRedirect(request.path_info)
+    else:
+        form = UserCommentForm()
+    return render(request, 'comments.html', {"comments":all_comments})
 
 
 
