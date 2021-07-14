@@ -1,3 +1,4 @@
+from datetime import date
 from django.test import TestCase
 from .models import Profile,Post,Comment
 from django.contrib.auth.models import User
@@ -11,10 +12,28 @@ class PostTestCase(TestCase):
         self.wangari = User(user='wangari')
         self.wangari.save()
 
-    # def test_save_post(self):
-    #     self.pokemon.save_post()
+        self.pokemon = Post(image='pokemon',name="pokemon",caption='Yeei',user=self.wangari, date='09-07-2021')
+
+    # def test_save_image(self):
+    #     # self.pokemon.save_image()
     #     posts = Post.objects.all()
     #     self.assertEquals(len(posts),1)
+
+    def tearDown(self):
+        Post.objects.all().delete()
+        User.objects.all().delete()
+
+    # def test_delete_image(self):
+    #     self.pokemon.save_image()
+    #     self.pokemon.delete_image()
+    #     posts = Post.objects.all()
+    #     self.assertTrue(len(posts)==0)
+
+    
+
+
+    
+        
 
     
 
