@@ -1,0 +1,47 @@
+{% load bootstrap3 %}
+{% extends 'base.html%}
+{% load crispy_form_tags %}
+
+{% block content%}
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <img src="{{user_profile.profile.profile.url}}">
+        </div>
+        <div class="heading">
+            <p>{{user_profile.username}}</p>
+            {% if follow status %}
+            <a href="{% url 'unfollow'user_profile.profile.id%}" class="btn btn-md btn-primary">unfollow</a>
+
+            {% else %}
+            <a href="{% url 'follow' user_profile.profile.id %}" class="btn btn-md btn-primary">follow</a>
+
+            {% endif %}
+        </div>
+        <div class="center">
+            <span class="mr-5"><strong>{{user_posts.count}}</strong> Posts</span>
+            <span class="mr-5"> <strong>{{ user_prof.profile.followers.count }}</strong> followers</span>
+            <span class="mr-5"> <strong>{{ user_prof.profile.following.count }}</strong> following</span>
+            <h2>{{ user.profile.name }}</h2>
+            <p class="text-secondary">{{ user.profile.bio }}</p>
+        </div>
+<div class="card-columns">
+{% for image in user_posts %}
+        <div class="card">
+<div class="card-body parent ">
+ <div class="cards">
+ <img src="{{image.image.url}}" alt="{{image.caption}}">
+ <p>{{image.likes.count}}<i class="far fa-heart mx-auto" aria-hidden="true"></i>  {{image.comments.count}}<i class="far fa-comment hearticon mx-auto" aria-hidden="true"></i></p>
+  </div>
+</div>
+</div>
+{% endfor %}
+ </div>
+</div>
+
+
+    </div>
+</div>
+
+{% endblock %}
+

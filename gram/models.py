@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 import datetime as dt
 from tinymce.models import HTMLField
+from django.db.models.signals import post_save,post_delete
+from django.dispatch import receiver
 
 # Create your models here.
 class Profile(models.Model):
@@ -30,6 +32,9 @@ class Post(models.Model):
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='posts')
     likes = models.ManyToManyField(User, related_name='likes', blank=True)
 
+    class Meta:
+        ordering = ['-pk']
+
     def save_image(self):
         self.save()
 
@@ -46,6 +51,9 @@ class Post(models.Model):
     def total_likes(self):
         return self.likes.count()
 
+    def get_absolute_url(self):
+        return f"/post/{self.id}"
+
 class Follow(models.Model):
     following = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='following')
     followers = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='followers')
@@ -58,6 +66,9 @@ class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='comments')
     created = models.DateTimeField(auto_now_add=True, null=True)
+
+    class Meta:
+        ordering = ['-pk']
     
     def __str__(self):
         return self.comment

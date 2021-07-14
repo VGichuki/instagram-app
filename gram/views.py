@@ -133,7 +133,19 @@ def comment(request, id):
         form = UserCommentForm()
     return render(request, 'comments.html', {"comments":all_comments})
 
+def follow(request, pk):
+    if request.method == 'GET':
+        user = Profile.objects.get(pk = pk)
+        follow = Follow(following = request.user.profile, followers =user)
+        follow.save()
+    return redirect('follow.html', user.user.username)
 
+def unfollow(request, pk):
+    if request.method == 'GET':
+        user1 = Profile.objects.get(pk = pk)
+        unfollow = Follow.objects.filter(following = request.user.profile, followers = user1)
+        unfollow.delete()
+        return redirect('follow.html', user1.user.username)
 
 
 
