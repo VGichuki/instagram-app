@@ -9,7 +9,7 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a href="{%url 'index'%}">GRAM</a>
+      <a href="{%url 'index'%}" style="font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: larger; font-weight: bolder;">GRAM</a>
     </div>
     <div class="col-sm-4 col-md-4 navbar-right" style="text-align: right;">
 
@@ -30,7 +30,7 @@
   
         </form>
 
-      <span id="=hello-msg">Hello,{{request.user}}</span>
+      <span id="=hello-msg" style="color: whitesmoke;">Hello,{{request.user}}</span>
     <span><a href="{% url 'logout'%}">Logout</a></span>
     </div>
     </div>

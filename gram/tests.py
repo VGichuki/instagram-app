@@ -1,4 +1,5 @@
 from datetime import date
+from unittest import result
 from django.test import TestCase
 from .models import Profile,Post,Comment
 from django.contrib.auth.models import User
@@ -28,6 +29,19 @@ class PostTestCase(TestCase):
     #     self.pokemon.delete_image()
     #     posts = Post.objects.all()
     #     self.assertTrue(len(posts)==0)
+
+    # def test_update_caption(self):
+    #     self.pokemon.save_image()
+    #     result = Post.update_caption(self.pokemon.id, 'have fun playing')
+    #     self.assertTrue(result.caption, 'have fun playing')
+
+class ProfileTestCase(TestCase):
+    '''
+    class that tests functions in class Profile
+    '''
+    def setUp(self):
+        self
+
 
     
 
